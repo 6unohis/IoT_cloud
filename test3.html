@@ -1,0 +1,47 @@
+<!-- test.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Dashboard</title>
+  <link rel="stylesheet" href="test3.css">
+</head>
+<body>
+  <div class="container" id="mainContainer">
+    <div class="time-section" id="timeDisplay">
+      <span id="clock">00:00:00</span>
+    </div>
+    <div class="data-section">
+      <div class="card" id="stressCard">
+        <div class = "card-summary">
+            <h4>스트레스 지수</h4>
+            <div class="stress-keyword">적당</div>
+        </div>
+        <div class="stress-graph hidden">
+          <canvas id="stressChart" width="300" height="125"></canvas>
+        </div>
+      </div>
+      <div class="card" id="sleepCard">
+        <div class = "card-summary">
+            <h4>권장 휴식 시간</h4>
+            <div class="sleep-advice">50분당 10분 휴식</div>
+        </div>
+        <div class="sleep-details hidden">
+          <div class="last-sleep">전날 수면: 6시간 30분</div>
+          <div class="avg-sleep">최근 평균: 6시간 50분</div>
+        </div>
+      </div>
+      <div class="card" id="sittingCard">
+        <div class = "card-summary">
+            <h4>앉아있는 시간</h4>
+            <div class="sitting-time">00:00:00</div>
+        </div>
+        <div class="sitting-total hidden">총 앉은 시간: 4시간 20분</div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="test3.js"></script>
+</body>
+</html>

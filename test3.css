@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 800px;
+  height: 480px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.6s ease;
+}
+
+.time-section {
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  transition: all 0.6s ease;
+  font-size: 64px;
+}
+
+.data-section {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e0e0e0;
+  transition: all 0.6s ease;
+  padding: 20px 0;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  transition: all 0.6s ease;
+  width: 85%;
+  height: 20%;
+  padding: 15px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.card-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  padding: 0 10px;
+  transition: flex 0.5s ease;
+}
+
+.expanded .card-summary {
+  flex: 0.5;
+}
+
+.card .stress-graph,
+.card .sleep-details,
+.card .sitting-total {
+  flex: 1;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 10px;
+
+  font-size:20px;
+}
+
+.expanded .card .stress-graph,
+.expanded .card .sleep-details,
+.expanded .card .sitting-total {
+  opacity: 1;
+  max-width: 300px;
+  max-height: 125px;
+  transform: translateY(0);
+  /* transition: all 0.2s ease; */
+  /* font-size : 20px; */
+}
+
+.expanded .time-section {
+  width: 30%;
+  font-size: 24px;
+}
+
+.expanded .data-section {
+  width: 70%;
+}
+
+.expanded .card {
+  height: 25%;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.stress-graph canvas {
+  margin-top: 5px;
+  width: 300px !important;
+  height: 160px !important;
+}
+
+.sleep-details,
+.sitting-total {
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sleep-details div,
+.sitting-total div {
+  margin-top: 8px;
+}
+
+.card-summary h4 {
+  font-size: 16px;
+  margin: 0 0 6px 0;
+  color: #333;
+  white-space: nowrap;
+}
+
+.stress-keyword,
+.sleep-advice,
+.sitting-time {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.time-text {
+  font-size: 64px;
+}
+
+.date-text {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.expanded .time-text {
+  font-size: 24px;
+}
+
+.expanded .date-text {
+  font-size: 14px;
+}
+
+.time-text,
+.date-text {
+  transition: font-size 0.3s ease;
+}
