@@ -167,37 +167,38 @@ function createStressChart() {
 
 function updateStressChart(stressData) {
     const values = stressData;
-    stressChartData.datasets[0].data = values.slice(-5);
+    // stressChartData.datasets[0].data = values.slice(-5);
+    stressChartData.datasets[0].data = values;
+    console.log(values);
     stressChart.update();
 }
 
 function updateSleepCard(sleepData) {
-    const hours = 0, minutes = 0;
-    const avgHours = 0, avgMins = 0;
-    const restAdvice = 0;
+    const hours = sleepData.hour, minutes = sleepData.minutes;
+    const avgHours = sleepData.avgHours, avgMins = sleepData.avgMins;
+    const restAdvice = sleepData.restAdvice;
   document.querySelector('.last-sleep').textContent = `전날 수면: ${hours}시간 ${minutes}분`;
   document.querySelector('.avg-sleep').textContent = `최근 평균: ${avgHours}시간 ${avgMins}분`;
   document.querySelector('.sleep-advice').textContent = `50분당 ${restAdvice}분 휴식`;
 }
 
 async function fetchFitbitData() {
-  const headers = {
-    'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
-  };
-
   const today = new Date().toISOString().split('T')[0];
 
   try {
-    // const [stressRes, sleepRes] = await Promise.all([
-    //   fetch('https://api.fitbit.com/1/user/-/stress/time_series.json', { headers }),
-    //   fetch(`https://api.fitbit.com/1.2/user/-/sleep/date/${today}.json`, { headers })
-    // ]);
+    const [stressRes, sleepRes] = await Promise.all([
+      fetch('https://igongsa.shop/api/stress'),
+      fetch('https://igongsa.shop/api/sleep')
+    ]);
 
-    // const stressData = await stressRes.json();
-    // const sleepData = await sleepRes.json();
+    const stressData = await stressRes.json();
+    const sleepData = await sleepRes.json();
 
-    const stressData = [0, 0, 0, 0, 0];
-    const sleepData = [];
+    console.log(stressData);
+    console.log(sleepData);
+
+    // const stressData = [0, 0, 0, 0, 0];
+    // const sleepData = [];
 
     updateStressChart(stressData);
     updateSleepCard(sleepData);
@@ -209,6 +210,14 @@ async function fetchFitbitData() {
 
 window.onload = () => {
   createStressChart();
+  
+  window.open(
+    'https://igongsa.shop/api/start',
+    'fitbit_oauth',
+    'width=600,height=700,top=100,left=100,resizable=yes,scrollbars=yes'
+  );
+
+
   fetchFitbitData();
   setInterval(fetchFitbitData, 600000); // 10분 간격
 };
